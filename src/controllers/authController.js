@@ -4,7 +4,16 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const Joi = require('joi');
 const serverlessSdk = require('@serverless/sdk');
+const sequelize = require('sequelize');
+const { Pool } = require('pg');
 
+const pool = new Pool ({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'DVDrental',
+  password: '7878',
+  port: 5432
+});
 
 
 function generateToken(email, role) {
@@ -112,3 +121,22 @@ exports.getUserList = async (req, res) => {
     res.status(400).json({ error: serverlessSdk.captureError(ex), message : "No"});
   }
 };
+
+exports.postgreSQLQuery = async (req, res) =>{
+
+  try {
+
+    // const jane = await CREATE TABLE Customer({ name: "Jane", age: 12, team : "RCB" });
+    const jane = await Abc.create({ name: "Jane", age: 12, team: "RCB" });
+
+    const response = {
+      jane : jane
+    }
+    res.status(200).json({ message: 'postGreSQL', response : response });
+    
+  } catch (error) {
+    console.log('error', error);
+    res.status(400).json({ error: error });
+  }
+ 
+}

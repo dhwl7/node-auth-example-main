@@ -4,6 +4,7 @@ const multer = require('multer');
 const authController = require('../controllers/authController');
 const path = require ('path');
 const md5 = require('md5');
+const postGres = require('../controllers/postgre');
 
 // Set up Multer for file uploads
 let upload = '';
@@ -32,5 +33,11 @@ router.get('/hello', authController.hello);
 router.post('/register', authController.register);
 router.post('/loginBy', authController.loginBy);
 router.get('/getUserList', authController.getUserList);
+router.get('/postgreSQLQuery', authController.postgreSQLQuery);
+
+router.get('/userSave', postGres.userSave);
+
+// router.get('/hello1', postGres.hello1);
+// router.get('/getUser', postGres.getUsers);
 
 module.exports = router;

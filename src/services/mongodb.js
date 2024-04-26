@@ -5,14 +5,14 @@ const mongoURI = 'mongodb://localhost:27017/node_auth_example';
 
 // MongoDB connection options
 const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true
 };
 
 // Connect to MongoDB
 mongoose.connect(mongoURI, options)
     .then(() => {
-        console.log('Connected to MongoDB');
+        // console.log('Connected to MongoDB');
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
